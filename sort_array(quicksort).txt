@@ -1,0 +1,83 @@
+// sort an array in ascending order 
+
+M1:-  to use stl sort(a,a+n)  i.e quicksort only 
+
+QuickSort :- 
+
+step 1: pick an element and place it such that,  (this is called partition)
+                         . . . . . e . . . . . 
+all to the left < e (pivot)
+all to the right > e 
+
+step 2: Recursion 
+
+Algorithm :->     
+  
+             void quicksort(int a[],  int s, int e){
+
+                  if(s>=e){
+                     return;
+                  }
+                  
+                  p = partiton(a,s,e);  -> returns index of pivot using partiton function 
+                  
+                  // Recursion 
+                  quicksort(a,s,p-1);
+                  quicksort(a,p+1,e);
+            
+             }
+
+Code :->  
+
+
+        class Solution
+{
+    public:
+    
+    int partition(int a[], int s, int e){
+        int pivot = a[s];
+        int cnt = 0;
+        for(int i=s;i<=e;i++){
+            if(pivot>a[i]){
+                cnt++;
+            }
+        }
+        int p_idx = s+cnt;
+        
+        swap(a[p_idx],a[s]);
+        
+        int i = s, j=e ;
+        while(i<p_idx && j>p_idx){
+            while(a[i]<a[p_idx]){
+                i++;
+            }
+            while(a[j]>a[p_idx]){
+                j--;
+            }
+            if(i<p_idx && j>p_idx){
+                swap(a[i++],a[j--]);
+            }
+        }
+        
+        return p_idx;
+    }
+    
+    void quicksort(int a[], int s, int e){
+        if(s>=e){
+            return;
+        }
+        int p = partition(a,s,e);
+        
+        
+        quicksort(a,s,p-1);
+        quicksort(a,p+1,e);
+    }
+    
+    void sort012(int a[], int n)
+    {
+     int s = 0, e = n-1;
+     quicksort(a,s,e);  
+    }
+
+
+

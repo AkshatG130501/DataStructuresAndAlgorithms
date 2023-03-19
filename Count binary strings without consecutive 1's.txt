@@ -1,0 +1,49 @@
+// Count binary strings without consecutive 1's 
+
+eg .  if n =2 
+      1 0
+      0 0 
+      0 1 
+total ways  = 3.
+
+
+
+#include <iostream>
+
+using namespace std;
+
+
+int ways(int n,int ld){
+    
+    // base case  
+    if(n==0){
+        return 0;
+    }
+    if(n==1){
+        if(ld == 0){
+            return 2;
+        }
+        else{
+            return 1;
+        }
+    }
+    
+    // recursive case 
+    if(ld ==0){
+        return ways(n-1,0)+ways(n-1,1);
+    }
+    else{
+        return ways(n-1,0);
+    }
+}
+
+int main()
+{
+    int n = 2;
+    cout<<ways(n,0)<<endl;
+
+    return 0;
+}
+
+
+

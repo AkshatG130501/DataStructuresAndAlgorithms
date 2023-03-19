@@ -1,0 +1,105 @@
+
+//T.C = O(n^3);
+
+#include <iostream>
+using namespace std;
+int main() {
+    
+    int a[10];
+    int max_sum=0;
+    int left=-1;
+    int right=-1;
+    for(int i=0;i<10;i++){
+        cin>>a[i];
+    }
+    for(int i=0;i<10;i++){
+        for(int j=i;j<10;j++){
+            int current_sum=0;
+            for(int k=i;k<j;k++){
+                current_sum+=a[k];
+            }
+            if(current_sum>=max_sum){
+                max_sum=current_sum;
+                left = i;
+                right =j;
+            }
+        }
+    }
+    cout<<max_sum<<endl;
+    for(int h=left;h<=right;h++){
+        cout<<a[h]<<",";
+    }
+    return 0;
+}
+
+
+
+
+//Better Method with T.C = O(n^2);
+//Cumulative Sum Method;
+
+
+#include <iostream>
+using namespace std;
+int main() {
+    
+    int a[10];
+    int cum_sum[10]={0};
+    int max_sum=0;
+    int left=-1;
+    int right=-1;
+    cum_sum[0]=a[0];
+    for(int i=1;i<10;i++){
+        cin>>a[i];
+        cum_sum[i]=cum_sum[i-1]+a[i];
+    }
+    for(int i=0;i<10;i++){
+        for(int j=i;j<10;j++){
+            int current_sum=0;
+            current_sum=cum_sum[j]-cum_sum[i-1];
+            //cout<<current_sum<<endl;
+            if(current_sum>=max_sum){
+                max_sum=current_sum;
+                left = i;
+                right =j;
+            }
+        }
+    }
+    cout<<max_sum<<endl;
+    for(int h=left;h<=right;h++){
+        cout<<a[h]<<",";
+    }
+    return 0;
+}
+
+
+
+
+
+// Best Method (Kadane's Algorithm) 
+// T.C = O(n)
+
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  int a[9];
+  int current_sum=0;
+  int max_sum=0;
+  for(int i=0;i<9;i++){
+      cin>>a[i];
+  }
+  for(int i=0;i<9;i++){
+      current_sum=current_sum+a[i];
+      if(current_sum<0){
+          current_sum=0;
+      }
+      max_sum=max(max_sum,current_sum);
+  }
+  cout << max_sum << endl;
+
+    return 0;
+}

@@ -1,0 +1,42 @@
+//Max circular Subarray Sum 
+//Using Kadane's Algorithm 
+
+
+#include <iostream>
+
+using namespace std;
+
+
+int kadane(int a[],int n){
+    for(int i=0;i<n;i++){
+        a[i]=0-a[i];
+    }
+    int current_sum=0,max_sum=0;
+    for(int i=0;i<n;i++){
+        current_sum+=a[i];
+        if(current_sum<0){
+            current_sum=0;
+        }
+        max_sum=max(max_sum,current_sum);
+    }
+    int total_sum=0;
+    for(int i=0;i<n;i++){
+        total_sum+=a[i];
+    }
+    int ans =0;
+    ans = -(total_sum-max_sum);
+    cout<<ans<<endl;
+    return ans;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int a[n]={0};
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    kadane(a,n);
+    return 0;
+}

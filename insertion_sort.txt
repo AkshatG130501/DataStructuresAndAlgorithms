@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+
+void insertion_sort(int*a,int n){
+    int j;
+    for(int i=1;i<n;i++){
+        int puc = a[i];
+        for(j=i-1;j>=0 && a[j]>puc ;j--){
+            a[j+1] = a[j];
+        }
+        a[j+1] = puc;
+    }
+}
+
+int main()
+{
+    int a[] = {5,2,1,3,4};
+    
+    int n = sizeof(a)/sizeof(a[0]);
+    
+    insertion_sort(a,n);
+    
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+    
+    return 0;
+}

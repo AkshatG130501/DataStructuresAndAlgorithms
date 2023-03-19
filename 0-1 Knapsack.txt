@@ -1,0 +1,48 @@
+// 0-1 Knapsack
+
+wt : [1,2,3,5]
+Price: [20,50,60,100]
+
+calculate max profit
+
+Approach : for a particular item i)if (wt<=capacity) => we can take it
+                                 ii) we can leave it 
+
+recurrence relation :-> f(wt,P,n,capacity) = if(wt[n-1]<=capacity){inc = p[n-1] + f(wt,P,n-1,capacity-wt[n-1]) };
+                                             exc = 0 + f(wt,P,n-1,capacity);
+                                             total profit = max(inc,exc);
+
+//code 
+
+#include <iostream>
+
+using namespace std;
+
+int max_profit(int*wt, int*P, int n, int capacity){
+    // Base case
+    if(capacity==0 || n == 0){
+        return 0;
+    }
+    
+    // recursive case 
+    int inc;
+    if(wt[n-1]<=capacity){
+         inc = P[n-1] + max_profit(wt,P,n-1,capacity-wt[n-1]);
+    }
+    int exc = 0 + max_profit(wt,P,n-1,capacity);
+    
+    return max(inc,exc);
+}
+
+
+
+int main()
+{
+    int wt[] = {1,2,3,5};
+    int P[] = {20,50,60,100};
+    int n = sizeof(wt)/sizeof(int);
+    
+    cout<<max_profit(wt,P,n,6)<<endl;
+
+    return 0;
+}

@@ -1,0 +1,90 @@
+// Ladders
+
+i/p : N , K 
+reach Nth stair with max step upto k 
+
+o/p: no. of ways to reach N
+
+
+// Top Down Approach
+
+#include <iostream>
+#include<climits>
+#include<vector>
+
+using namespace std;
+
+
+int ways(int n, int k, int*dp){
+    
+    //base case
+    if(n==0){
+        return 1;
+    }
+
+    //rec case
+    if(dp[n]!=0){
+        return dp[n];
+    }
+    int count = 0;
+    for(int i=1;i<=k;i++){
+        if(n-i>=0){
+            count+=ways(n-i,k,dp);
+        }
+    
+    }
+    return dp[n] = count;
+}
+
+
+int main(){
+
+    int n =4,k=3;
+    //cin>>n>>k;
+    //int count = 0;
+    int dp[100] ={0};
+    cout<<ways(n,k,dp)<<endl;
+
+    return 0;
+}
+
+
+// Bottom Up Approach 
+
+#include <iostream>
+#include<climits>
+#include<vector>
+
+using namespace std;
+
+
+int ways(int n, int k){
+    
+    int dp[100] ={0};
+    dp[0] = 1;
+    
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=k;j++){
+            if(i>=j){
+                dp[i] += dp[i-j];
+            }
+        }
+    }
+
+    return dp[n];
+    
+}
+
+
+int main(){
+
+    int n =4,k=3;
+    cout<<ways(n,k)<<endl;
+
+    return 0;
+}
+
+
+// Space Optimized Approach 
+
+ 

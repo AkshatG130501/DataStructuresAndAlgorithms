@@ -1,0 +1,90 @@
+// Min. coin change 
+ i/p : N =15
+       coins = [1,7,10];
+
+find minimum number of coins to make the sum 15 . each coin can be used infintely
+
+// Top down approach 
+
+#include <iostream>
+#include<climits>
+
+using namespace std;
+
+
+int minCoin(int*coins, int N, int k, int*dp){
+    
+    //base case
+    if(N==0){
+        return 0;
+    }
+    
+    //rec case 
+    
+    if(dp[N]!=0){
+        return dp[N];
+    }
+    
+    int ans = INT_MAX;
+    for(int i=0;i<k;i++){
+        if(N-coins[i]>=0){
+            int subprob = minCoin(coins,N-coins[i],k,dp);
+            ans = min(ans,subprob+1);
+        }
+    }
+    dp[N] = ans;
+    return dp[N];
+    
+}
+
+
+int main()
+{
+    int coins[] ={1,7,10};
+    int N = 15;
+    int k = sizeof(coins)/sizeof(int);
+    int dp[100] = {0};
+    
+    cout<<minCoin(coins,N,k,dp)<<endl;
+
+    return 0;
+}
+
+
+
+// Bottom Up Approach 
+
+#include <iostream>
+#include<climits>
+#include<vector>
+
+using namespace std;
+
+
+int minCoin(int*coins, int N, int k){
+    int dp[100]={0};
+
+    for(int i=1;i<=N;i++){
+        dp[i] = INT_MAX;
+
+        for(int t=0;t<k;t++){
+            if(i-coins[t]>=0){
+                dp[i] = min(dp[i],dp[i-coins[t]]+1);
+            }
+        }
+    }
+
+    return dp[N];
+}
+
+
+int main()
+{
+    int coins[] ={1,7,10};
+    int N = 15;
+    int k = sizeof(coins)/sizeof(int);
+    
+    cout<<minCoin(coins,N,k)<<endl;
+
+    return 0;
+}

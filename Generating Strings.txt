@@ -1,0 +1,10 @@
+// Generating Strings 
+
+Given i/p string : "123"   intgers are mapped to letters
+o/p : ABC , AW, LC
+
+explanation : (1)(2)(3) , (1)(23) , (12)(3) 
+
+
+//code :
+

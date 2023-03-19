@@ -1,0 +1,27 @@
+// N stairs : child standing on the ground wants to clim n stairs . He/ she can climb upto 3 stairs at a time (i.e 1 or 2 or 3)
+// find total ways to climb n stairs.
+
+
+#include <iostream>
+
+using namespace std;
+
+int ways(int n){
+    if(n==0){
+        return 1;
+    }
+    if(n<0){
+        return 0;
+    }
+    
+    return ways(n-1) + ways(n-2) + ways(n-3);
+}
+
+
+int main()
+{
+    int n = 3;
+    cout<<ways(n)<<endl;
+
+    return 0;
+}

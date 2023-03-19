@@ -1,0 +1,27 @@
+// Given a wall of size (4*N) . Fill the wall with bricks of size 1*4 or 4*1 ;
+// Find no. of ways to fill the wall.
+
+
+#include <iostream>
+
+using namespace std;
+
+int ways(int n){
+    
+    // Base Case 
+    if(n<=3){
+        return 1;
+    }
+    
+    // Recursive Case
+    return ways(n-1)+ ways(n-4);
+}
+
+
+int main()
+{
+    int n = 5;
+    cout<<ways(n)<<endl;
+
+    return 0;
+}

@@ -1,0 +1,42 @@
+// Sliding Window (Theory)
+
+Problem :-> Given array -> [ 2 | 3| 5| 2| 7| 1| 9 ]
+            size of subarray -> 3
+            find sum of all 3 size subarrays.
+
+Solution->  1). Brute force-> 
+                 
+                take two pointers i,j  
+                for(i=0;i<n;i++){
+                   for(j=i;j<i+3;j++){
+                         sum;  
+                      }
+                }
+            // Repeatition is happening. To avoid use Sliding Window.
+
+            2). Sliding Window -> 
+                  
+                [ 2 | 3| 5| 2| 7| 1| 9 ] => [ 2 | 3| 5| 2| 7| 1| 9 ] => [ 2 | 3| 5| 2| 7| 1| 9 ]
+                  ^                           ^   ^                       ^      ^
+                 i,j                          i   j                       i      j
+ 
+                [ 2 | 3| 5| 2| 7| 1| 9 ] => [ 2 | 3| 5| 2| 7| 1| 9 ] => [ 2 | 3| 5| 2| 7| 1| 9 ]
+                      ^     ^                        ^     ^                        ^     ^
+                      i     j                        i     j                        i     j 
+
+
+
+Identify :->   
+    
+              Given:- Array / String
+              Asked :- Subarray/Substring    to find :- max, min , largest
+                       given K (Window size)  (not given always)
+
+                                                  
+                                                      TYPES ->
+
+                        1). Fixed Window size                               2). Variable Window Size
+                                                                                
+                                                                                Find window Size (largest/smallest)
+                                                                                Given: Sum   Find : largest/smallest subarray with sum 
+   

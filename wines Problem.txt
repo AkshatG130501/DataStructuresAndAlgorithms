@@ -1,0 +1,51 @@
+// wines Problem
+
+i/p: wines = [2,3,5,1,4]  -> prices of wines
+o/p : maximum profit
+
+we can sell either first or last bottle and only one bottle is sold in a year.
+total years = total no. of bottles 
+
+// Top Down Approach
+
+#include <iostream>
+#include<climits>
+#include<vector>
+
+using namespace std;
+
+
+int maxProfit(int*wines,int year, int i, int j, int dp[100][100] ){
+    
+    //base case
+    if(i>j){
+        return 0 ;
+    }
+
+    //rec case
+    if(dp[i][j]!=0){
+        return dp[i][j];
+    }
+
+    int op1 = wines[i]*year + maxProfit(wines,year+1,i+1,j,dp);
+    int op2 = wines[j]*year + maxProfit(wines,year+1,i,j-1,dp);
+
+    return dp[i][j] = max(op1,op2);
+}
+
+
+int main(){
+
+    int wines[] = {2,3,5,1,4};
+    int n = sizeof(wines)/sizeof(int);
+    int dp[100][100]={0};
+
+    cout<<maxProfit(wines,1,0,n-1,dp)<<endl;
+
+
+    return 0;
+}
+
+
+// Bottom Up Approach 
+
